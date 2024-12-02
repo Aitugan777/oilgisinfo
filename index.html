@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IStream - Работа приложения</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>IStream</h1>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="decoder.html">Decoder</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="description">
+            <h2>Как работает приложение IStream</h2>
+            <p>Приложение IStream взаимодействует с наземной панелью через TCP, чтобы получать поток данных. Модуль <strong>Listener</strong> выполняет подключение и принимает данные:</p>
+            <pre>
+416447
+419957
+424387
+429769
+435368
+440677
+445704
+450266
+454673
+458853
+            </pre>
+            <p>Данные обрабатываются через <strong>демодулятор</strong>, который реализован модулем <code>Demoduation</code>. 
+            Этот процесс осуществляется через метод:</p>
+            <pre>
+string Demodulate(int signal)
+            </pre>
+            <p>Как только демодулятор обнаруживает фрейм, он возвращает строку:</p>
+            <pre>
+1100100101111110010001000000001001111110110000000101011111100111010010
+            </pre>
+            <p>Эта строка передается в следующий модуль – <strong>Decoder</strong>. Его метод:</p>
+            <pre>
+Frame Decode(string binaryFrame)
+            </pre>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 IStream Solutions</p>
+    </footer>
+</body>
+</html>

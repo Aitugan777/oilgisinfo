@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decoder - Детали</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Подробности о Decoder</h1>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="decoder.html">Decoder</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="details">
+            <h2>Как работает модуль Decoder</h2>
+            <p>Декодер начинает работу с получения фрейма от демодулятора.<br/>Рассмотрим пример:</p>
+            <pre>
+1100100101111110010001000000001001111110110000000101011111100111010010
+            </pre>
+            <p>Первые 24 символа переводятся в десятичное число. Это называется <strong>Синхрослово</strong>. Затем, на основании этого значения, из конфигурации <code>ConfigDrill</code> определяется тип фрейма и его структура.<br/>Пример конфигурации:</p>
+            <pre>
+"Frames": [
+    {"Type": 0, "Sync": 3250782, "crc": 1, "rd": [42, 43, 44, 45, 46, 47, 3]},
+    {"Type": 1, "Sync": 7085514, "crc": 0, "rd": [6, 179, 2, 44, 40, 41, 181]},
+    {"Type": 3, "Sync": 13205060, "crc": 0, "rd": [224, 3, 2, 5]}
+]
+            </pre>
+            <p>Для определения длины каналов используется информация о каналах:</p>
+            <pre>
+"Dpu": [
+    {"ID": 224, "rL": 8},
+    {"ID": 2, "rL": 13},
+    {"ID": 3, "rL": 9},
+    {"ID": 6, "rL": 10}
+]
+            </pre>
+            <p>Пример фрейма:</p>
+            <ul>
+                <li>Sync = 13205060</li>
+                <li>Канал 1 = 2</li>
+                <li>Канал 2 = 253</li>
+                <li>Канал 3 = 4117</li>
+                <li>Канал 4 = 31977</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 IStream Solutions</p>
+    </footer>
+</body>
+</html>
